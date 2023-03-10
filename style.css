@@ -1,0 +1,14 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+}
+form div {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+form div select {
+  height: 24px;
+}/*# sourceMappingURL=style.css.map */

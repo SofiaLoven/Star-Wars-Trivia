@@ -1,0 +1,15 @@
+form{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    div{
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        //border: 2px solid green;
+        select{
+            height: 24px;
+        }
+    }
+}
