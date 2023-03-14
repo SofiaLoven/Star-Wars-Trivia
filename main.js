@@ -18,10 +18,13 @@ class character{
 
 let showCharacters = document.querySelector("#characterForm"); //Referar till ett form.
 let profileCards = document.querySelector("#profileCards");
+let showMore = document.querySelector("#showMore");
+let extraInfo = document.querySelector("#extraInfo");
 let myCharacters = [];
 
 //Hämtar de valda värdena från select. Kollar om det är samma värde. Pushar annars in värdet i en Array.
 let choosenCharacters = ()=>{
+    myCharacters = []; //Tömmer arrayen för varje ny funktion.
     let character1 = document.querySelector('select[name="characterList1"]').value;
     let character2 = document.querySelector('select[name="characterList2"]').value;
     if(character1 === character2){
@@ -72,42 +75,112 @@ let allCharacters = async (arr) =>{
 
 //Går igenom karaktärerna.
 let renderCharacters = (characters) => {
-    profileCards.innerHTML= "";
+    profileCards.innerHTML=""; //Tömmer diven.
+    let characterArr = [];
     characters.forEach((obj) => {
         obj = obj.results[0]; //Objektet ligger i en array. Men det finns bara en. Därav index 0.
-        let newCharacter = new character(obj.name, obj.gender, obj.height, obj.mass, obj.hair_color, obj.skin_color, obj.eye_color, obj.films)
+        let newCharacter = new character(obj.name, obj.gender, obj.height, obj.mass.replace(",",""), obj.hair_color, obj.skin_color, obj.eye_color, obj.films)
         //Pusha in i en array för arr kunna jämföra de två mot varandra. utanför forEachen.
-        
-        //Använder classen för att skriva ut första infon.
-        let div = document.createElement("div");
+        characterArr.push(newCharacter);
+        });
+    
+    characterArr.forEach((newCharacter)=>{
         //let picture = document.createElement("img");
+        let div = document.createElement("div");
         let heading = document.createElement("h3");
-        let showMoreBtn = document.createElement("button");
-        showMoreBtn.innerText = "Show more info";
-        heading.innerText= `Character 1: ${newCharacter.name}`;
+        heading.innerText= `Character: ${newCharacter.name}`;
         //picture.src = `${newCharacter.pictureUrl}`;
         div.innerHTML = `<img src="./photos/${newCharacter.pictureUrl}.webp" alt="">`
-        div.append(heading, showMoreBtn);
-        profileCards.append(div);
+        div.append(heading);
 
-        showMoreBtn.addEventListener("click", () =>{
+        profileCards.append(div);
+    });
+    
+    let showMoreBtn = document.createElement("button");
+    showMoreBtn.innerText = "Show more info";
+    showMore.append(showMoreBtn);
+
+    showMoreBtn.addEventListener("click", () =>{
+        characterArr.forEach((newCharacter)=>{
             let moreInfo = document.createElement("div");
             moreInfo.innerHTML= `
             <ul>
-                <li>Gender: ${newCharacter.gender}
-                <li>Height: ${newCharacter.height}
-                <li>Body mass: ${newCharacter.mass}
-                <li>Hair Color: ${newCharacter.hairColor}
-                <li>Skin Color: ${newCharacter.skinColor}
-                <li>Eye Color: ${newCharacter.eyeColor}
-                <li>Number of films: ${newCharacter.movies}
+                <li>Gender: ${newCharacter.gender}</li>
+                <li>Height: ${newCharacter.height} cm</li>
+                <li>Body mass: ${newCharacter.mass} kg</li>
+                <li>Hair Color: ${newCharacter.hairColor}</li>
+                <li>Skin Color: ${newCharacter.skinColor}</li>
+                <li>Eye Color: ${newCharacter.eyeColor}</li>
+                <li>Number of films: ${newCharacter.movies}</li>
             </ul>
             `
-            div.appendChild(moreInfo);
-            
-        })
-    });
-}; 
+            extraInfo.appendChild(moreInfo);
+            extraInfo.append(stylingDiv);
+        })  
+    })
+    //console.log(`Ny obj: ${characterArr[1].gender}`);
+    let stylingDiv = document.createElement("div");
+    let compare = document.createElement("div");
+    //Gender
+    let gender = document.createElement("p");
+    if(characterArr[0].gender === characterArr[1].gender){
+        gender.innerText= `${characterArr[0].name} has the same gender as ${characterArr[1].name}`;
+    }else{
+        gender.innerText= `${characterArr[0].name} doesn't have the same gender as ${characterArr[1].name}`;
+    }
+    //Height
+    let height = document.createElement("p");
+    if(characterArr[0].height > characterArr[1].height){
+        height.innerText= `${characterArr[0].name} is taller then ${characterArr[1].name}`;
+    }else if(characterArr[0].height < characterArr[1].height){
+        height.innerText= `${characterArr[1].name} is taller then ${characterArr[0].name}`;
+    }else{
+        height.innerText= `${characterArr[1].name} and ${characterArr[0].name} is equaly tall.`;
+    }
+    //Weight
+    let mass = document.createElement("p");
+    if(characterArr[0].mass > characterArr[1].mass){
+        mass.innerText= `${characterArr[0].name} weighs more then ${characterArr[1].name}`;
+    }else if(characterArr[0].mass < characterArr[1].mass){
+        mass.innerText= `${characterArr[1].name} weighs more then ${characterArr[0].name}`;
+    }else{
+        mass.innerText= `${characterArr[1].name} and ${characterArr[0].name} weights the same.`;
+    }
+    //Hair Color
+    let hair = document.createElement("p");
+    if(characterArr[0].hairColor === characterArr[1].hairColor){
+        hair.innerText= `${characterArr[0].name} has the same hair color as ${characterArr[1].name}`;
+    }else{
+        hair.innerText= `${characterArr[0].name} doesn't have the same hair color as ${characterArr[1].name}`;
+    }
+    //Skin Color
+    let skin = document.createElement("p");
+    if(characterArr[0].skinColor === characterArr[1].skinColor){
+        skin.innerText= `${characterArr[0].name} has the same skink color as ${characterArr[1].name}`;
+    }else{
+        skin.innerText= `${characterArr[0].name} doesn't have the same skin color as ${characterArr[1].name}`;
+    }
+    //Eye Color
+    let eye = document.createElement("p");
+    if(characterArr[0].eyeColor === characterArr[1].eyeColor){
+        eye.innerText= `${characterArr[0].name} has the same eye color as ${characterArr[1].name}`;
+    }else{
+        eye.innerText= `${characterArr[0].name} doesn't have the same eye color as ${characterArr[1].name}`;
+    }
+    //Films
+    let movies = document.createElement("p");
+    if(characterArr[0].movies > characterArr[1].movies){
+        movies.innerText= `${characterArr[0].name} has been in more movies then ${characterArr[1].name}`;
+    }else if(characterArr[0].movies < characterArr[1].movies){
+        movies.innerText= `${characterArr[1].name} has been in more movies then ${characterArr[0].name}`;
+    }else{
+        movies.innerText= `${characterArr[1].name} and ${characterArr[0].name} has been in the same amount of movies.`;
+    }
+    compare.append(gender, height, mass, hair, skin, eye, movies);
+    stylingDiv.append(compare);
+};
+
+
 
 //Hämta karaktärerna med api. Använd promises för att välja karaktär efter listorna?
 
