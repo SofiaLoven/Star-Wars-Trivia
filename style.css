@@ -11,4 +11,16 @@ form div {
 }
 form div select {
   height: 24px;
+}
+
+#profileCards {
+  display: flex;
+  justify-content: space-around;
+  width: 600px;
+}
+#profileCards div {
+  margin-top: 16px;
+}
+#profileCards div img {
+  width: 160px;
 }/*# sourceMappingURL=style.css.map */
