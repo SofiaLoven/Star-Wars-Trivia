@@ -1,26 +1,95 @@
-form {
+body {
+  margin: 0;
+  background-color: #0b0b0b;
+  background-image: url(space-background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #FFE81F;
+}
+
+#upperSection {
+  width: 100%;
+  padding: 40px 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+#upperSection img {
+  height: 100px;
+  border-radius: 24px;
+}
+#upperSection form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 350px;
 }
-form div {
-  margin-top: 16px;
+#upperSection form div {
+  margin: 16px 0;
+  width: 350px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-form div select {
+#upperSection form div select {
   height: 24px;
+  border: 2px solid #FFE81F;
+  border-radius: 8px;
+  background-color: black;
+  color: #FFE81F;
+}
+#upperSection form button {
+  border: 2px solid #FFE81F;
+  border-radius: 8px;
+  background-color: black;
+  color: #FFE81F;
 }
 
-#profileCards {
+#lowerSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#lowerSection #profileCards {
   display: flex;
   justify-content: space-around;
   width: 600px;
-}
-#profileCards div {
   margin-top: 16px;
 }
-#profileCards div img {
-  width: 160px;
+#lowerSection #profileCards div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#lowerSection #profileCards div img {
+  height: 200px;
+  box-shadow: 5px 10px 18px #888888;
+}
+#lowerSection #showMore {
+  margin: 20px;
+}
+#lowerSection #showMore button {
+  border: 2px solid #FFE81F;
+  border-radius: 8px;
+  background-color: black;
+  color: #FFE81F;
+}
+#lowerSection #extraInfo {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#lowerSection #extraInfo #styling {
+  display: flex;
+  justify-content: space-between;
+}
+#lowerSection #extraInfo ul {
+  text-align: center;
+  border-radius: 4px;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+  width: 300px;
 }/*# sourceMappingURL=style.css.map */
