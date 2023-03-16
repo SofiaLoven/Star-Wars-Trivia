@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background-color: #0b0b0b;
-  background-image: url(space-background.jpg);
+  background-image: url(./assets/space-background.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   color: #FFE81F;
@@ -83,13 +83,16 @@ body {
 }
 #lowerSection #extraInfo #styling {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  margin: 20px;
+}
+#lowerSection #extraInfo #compare {
+  display: flex;
+  justify-content: center;
 }
 #lowerSection #extraInfo ul {
-  text-align: center;
   border-radius: 4px;
   list-style: none;
   margin-left: 0;
   padding-left: 0;
-  width: 300px;
 }/*# sourceMappingURL=style.css.map */

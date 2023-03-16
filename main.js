@@ -12,11 +12,10 @@ class character{
         this.eyeColor = eyeColor;
         this.movies = movies.length;
         this.pictureUrl = name.replace(/\s/g, "-"); //Behöver ändras för att bilder med flera namn ska fungera.
-        //<img src="../assets/photos/${obj.name.replace(/\s/g, "-")}.png" alt="a picture of ${obj.name}" style="height: 150px; width: 200px;"/><br/>
     }
 }
 
-let showCharacters = document.querySelector("#characterForm"); //Referar till ett form.
+let showCharacters = document.querySelector("#characterForm"); //Pekar på ett form.
 let profileCards = document.querySelector("#profileCards");
 let showMore = document.querySelector("#showMore");
 let extraInfo = document.querySelector("#extraInfo");
@@ -30,10 +29,12 @@ let choosenCharacters = ()=>{
     if(character1 === character2){
         alert("Choose two different characters");
         //Ändra denna till en rolig pop-upp!?
-    } else{
+    } else if(character1.value === "0" || character2 === "0"){
+        alert("Please choose characthers!");
+    }else{
         myCharacters.push(character1, character2);
+        allCharacters(myCharacters);
     }
-    allCharacters(myCharacters);
 }
 
 //Kör funktionerna då formuläret skickas. 
@@ -90,7 +91,7 @@ let renderCharacters = (characters) => {
         let heading = document.createElement("h3");
         heading.innerText= `${newCharacter.name}`;
         //picture.src = `${newCharacter.pictureUrl}`;
-        div.innerHTML = `<img src="./photos/${newCharacter.pictureUrl}.png" alt="Picture of ${newCharacter.name}">`
+        div.innerHTML = `<img src="./assets/photos/${newCharacter.pictureUrl}.png" alt="Picture of ${newCharacter.name}">`
         div.append(heading);
 
         profileCards.append(div);
@@ -102,8 +103,8 @@ let renderCharacters = (characters) => {
 
     showMoreBtn.addEventListener("click", () =>{
         extraInfo.innerText="";
-        let styleDiv = document.createElement("div");
-        styleDiv.setAttribute("id", "styling")
+        let extraInfoDiv = document.createElement("div");
+        extraInfoDiv.setAttribute("id", "styling")
         characterArr.forEach((newCharacter)=>{
             let moreInfo = document.createElement("div");
             moreInfo.innerHTML= `
@@ -119,13 +120,13 @@ let renderCharacters = (characters) => {
             </ul>
             `
 
-            styleDiv.appendChild(moreInfo);
-            //extraInfo.append(stylingDiv);
+            extraInfoDiv.appendChild(moreInfo);
         })  
-        extraInfo.append(styleDiv, stylingDiv);
+        extraInfo.append(extraInfoDiv, compareDiv);
     })
     //console.log(`Ny obj: ${characterArr[1].gender}`);
-    let stylingDiv = document.createElement("div");
+    let compareDiv = document.createElement("div");
+    compareDiv.setAttribute("id", "compare");
     let compare = document.createElement("ul");
     //Gender
     let gender = document.createElement("li");
@@ -183,7 +184,7 @@ let renderCharacters = (characters) => {
         movies.innerText= `${characterArr[1].name} and ${characterArr[0].name} has been in the same amount of movies.`;
     }
     compare.append(gender, height, mass, hair, skin, eye, movies);
-    stylingDiv.append(compare);
+    compareDiv.append(compare);
 };
 
 

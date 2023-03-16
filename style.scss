@@ -1,11 +1,18 @@
+$starWarsYellow: #FFE81F;
+@mixin button{
+    border: 2px solid $starWarsYellow;
+    border-radius: 8px;
+    background-color: black;
+    color: $starWarsYellow;
+}
+
 body{
     margin: 0;
     background-color: #0b0b0b;
-    background-image: url(space-background.jpg);
+    background-image: url(./assets/space-background.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    //height: 1000px; //Enbart för att bakgrunden inte ska "hoppa till".
-    color: #FFE81F;
+    color: $starWarsYellow;
 }
 #upperSection{
     width: 100%;
@@ -30,17 +37,14 @@ body{
             align-items: center;
             select{
                 height: 24px;
-                border: 2px solid #FFE81F;
+                border: 2px solid $starWarsYellow;
                 border-radius: 8px;
                 background-color: black;
-                color: #FFE81F;
+                color: $starWarsYellow;
             }
         }
         button{
-            border: 2px solid #FFE81F;
-            border-radius: 8px;
-            background-color: black;
-            color: #FFE81F;
+            @include button;
         }
     }
 }
@@ -67,32 +71,28 @@ body{
     #showMore{
         margin: 20px;
         button{
-            border: 2px solid #FFE81F;
-            border-radius: 8px;
-            background-color: black;
-            color: #FFE81F;
+           @include button;
         }
     }
     #extraInfo{
-        //padding: 20px;
         width: 600px;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         #styling{
             display: flex;
-            justify-content: space-between;
+            justify-content: space-evenly;
+            margin: 20px;
         }
-        //Fånga nästa div och lägg centralt.
+        #compare{
+            display: flex;
+            justify-content: center;
+        }   
         ul{
-            //background-color: #30303a;
-            text-align: center;
             border-radius: 4px;
             list-style: none;
             margin-left: 0;
             padding-left: 0;
-            width: 300px;
         }
     }
-
 }

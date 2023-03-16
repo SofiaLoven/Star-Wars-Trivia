@@ -7,18 +7,17 @@
     <title>Star Wars API</title>
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <section id="upperSection">
-        <img src="logo-star-wars.svg" alt="Logo of Star Wars">
+        <img src="./assets/logo-star-wars.svg" alt="Logo of Star Wars">
         <h2>Compare youre characters</h2>
 
         <form id="characterForm">
             <label for="picker">Choose two characters that you want to compare</label>
             <div>
                 <select name="characterList1" id="picker">
-                    <option disabled selected>Character One</option>
+                    <option value="0" disabled selected>Character One</option>
                     <option>Yoda</option>
                     <option>R2-D2</option>
                     <option>C-3PO</option>
@@ -28,7 +27,7 @@
                 </select>
                 <p>VS</p>
                 <select name="characterList2" id="picker">
-                    <option disabled selected>Character two</option>
+                    <option value="0" disabled selected>Character two</option>
                     <option>Yoda</option>
                     <option>R2-D2</option>
                     <option>C-3PO</option>
