@@ -85,6 +85,7 @@ body{
     #showMore{
         margin: 20px;
         button{
+            display: none;
            @include button;
         }
     }

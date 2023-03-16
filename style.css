@@ -82,6 +82,7 @@ body {
   margin: 20px;
 }
 #lowerSection #showMore button {
+  display: none;
   border: 2px solid #f5df19;
   border-radius: 8px;
   background-color: black;

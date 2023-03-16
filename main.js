@@ -18,6 +18,7 @@ let showCharacters = document.querySelector("#characterForm"); //Pekar på ett f
 let alert = document.querySelector("#alert");
 let profileCards = document.querySelector("#profileCards");
 let showMore = document.querySelector("#showMore");
+let showMoreBtn = document.querySelector("#showMoreBtn");
 let extraInfo = document.querySelector("#extraInfo");
 let myCharacters = [];
 
@@ -44,6 +45,7 @@ let choosenCharacters = ()=>{
 //Kör funktionerna då formuläret skickas. 
 showCharacters.addEventListener("submit",(e)=>{
     e.preventDefault();
+    profileCards.innerHTML="";
     choosenCharacters();
 })
 
@@ -81,6 +83,9 @@ let allCharacters = async (arr) =>{
 //Går igenom karaktärerna.
 let renderCharacters = (characters) => {
     profileCards.innerHTML=""; //Tömmer diven.
+    extraInfo.innerHTML="";
+    showMoreBtn.style.display = "none";
+
     let characterArr = [];
     characters.forEach((obj) => {
         obj = obj.results[0]; //Objektet ligger i en array. Men det finns bara en. Därav index 0.
@@ -99,9 +104,10 @@ let renderCharacters = (characters) => {
         profileCards.append(div);
     });
     
-    let showMoreBtn = document.createElement("button");
-    showMoreBtn.innerText = "Show more info";
-    showMore.append(showMoreBtn);
+    showMoreBtn.style.display = "block";
+    //let showMoreBtn = document.createElement("button");
+    //showMoreBtn.innerText = "Show more info";
+    //showMore.append(showMoreBtn);
 
     showMoreBtn.addEventListener("click", () =>{
         extraInfo.innerText="";
