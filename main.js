@@ -29,18 +29,18 @@ let choosenCharacters = ()=>{
     let character1 = document.querySelector('select[name="characterList1"]').value;
     let character2 = document.querySelector('select[name="characterList2"]').value;
     let text = document.createElement("p");
-    if(character1 === character2){
-        text.innerText = "Please choose two different characters";
-        alert.append(text);
-        //Ändra denna till en rolig pop-upp!?
-    } else if(character1.value === "0" || character2 === "0"){
+
+    if(character1 === "disabled" || character2 === "disabled"){
         text.innerText = "Please choose two characters";
+        alert.append(text);
+    } else if(character1 === character2){
+        text.innerText = "Please choose two different characters";
         alert.append(text);
     }else{
         myCharacters.push(character1, character2);
         allCharacters(myCharacters);
     }
-}
+};
 
 //Kör funktionerna då formuläret skickas. 
 showCharacters.addEventListener("submit",(e)=>{
@@ -61,6 +61,7 @@ let getData = async (url) =>{
 //Hämtar datan för valda karaktärer. Använder search för att finna karaktärerna.
 let getCharacther = async(id)=>{
     try{
+        //Visar en GIF i väntan på API-datan.
         profileCards.innerHTML = `
         <img src="https://thumbs.gfycat.com/SecondNiftyHammerheadbird-size_restricted.gif?fbclid=IwAR01YJWSG3CcYrOVaOpmsOe8ho35TzyJr9d_jtmqC36r_3oGrB5BN1s_JYQ" alt="Loading gif of a spinning lightsaber" class="loading-img"/>`;
         let response = await getData(`https://swapi.dev/api/people?search=${id}`);
@@ -82,7 +83,7 @@ let allCharacters = async (arr) =>{
     }
 };
 
-//Går igenom karaktärerna.
+//Går igenom karaktärerna och skriver ut dem.
 let renderCharacters = (characters) => {
     profileCards.innerHTML=""; //Tömmer diven.
     extraInfo.innerHTML="";
@@ -92,7 +93,7 @@ let renderCharacters = (characters) => {
     characters.forEach((obj) => {
         obj = obj.results[0]; //Objektet ligger i en array. Men det finns bara en. Därav index 0.
         let newCharacter = new character(obj.name, obj.gender, obj.height, obj.mass.replace(",",""), obj.hair_color, obj.skin_color, obj.eye_color, obj.films)
-        //Pusha in i en array för arr kunna jämföra de två mot varandra. utanför forEachen.
+        //Pusha in i en array för arr kunna jämföra de två mot varandra.
         characterArr.push(newCharacter);
         });
     
@@ -107,9 +108,6 @@ let renderCharacters = (characters) => {
     });
     
     showMoreBtn.style.display = "block";
-    //let showMoreBtn = document.createElement("button");
-    //showMoreBtn.innerText = "Show more info";
-    //showMore.append(showMoreBtn);
 
     showMoreBtn.addEventListener("click", () =>{
         extraInfo.innerText="";
@@ -133,7 +131,7 @@ let renderCharacters = (characters) => {
         })  
         extraInfo.append(extraInfoDiv, compareDiv);
     })
-    //console.log(`Ny obj: ${characterArr[1].gender}`);
+
     let compareDiv = document.createElement("div");
     compareDiv.setAttribute("id", "compare");
     let compare = document.createElement("ul");
