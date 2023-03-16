@@ -46,6 +46,8 @@ let choosenCharacters = ()=>{
 showCharacters.addEventListener("submit",(e)=>{
     e.preventDefault();
     profileCards.innerHTML="";
+    extraInfo.innerHTML="";
+    showMoreBtn.style.display = "none";
     choosenCharacters();
 })
 
