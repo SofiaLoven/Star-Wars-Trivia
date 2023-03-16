@@ -1,4 +1,3 @@
-//Går det att söka efter bilderna på annat sätt? Går det att söka efter figurerna med mellanrum?
 
 //Class för karaktärerna.
 class character{
@@ -16,21 +15,26 @@ class character{
 }
 
 let showCharacters = document.querySelector("#characterForm"); //Pekar på ett form.
+let alert = document.querySelector("#alert");
 let profileCards = document.querySelector("#profileCards");
 let showMore = document.querySelector("#showMore");
 let extraInfo = document.querySelector("#extraInfo");
 let myCharacters = [];
 
-//Hämtar de valda värdena från select. Kollar om det är samma värde. Pushar annars in värdet i en Array.
+//Hämtar de valda värdena från select. Kollar om det är samma värde/ något valt. Pushar annars in värdet i en Array.
 let choosenCharacters = ()=>{
     myCharacters = []; //Tömmer arrayen för varje ny funktion.
+    alert.innerHTML="";
     let character1 = document.querySelector('select[name="characterList1"]').value;
     let character2 = document.querySelector('select[name="characterList2"]').value;
+    let text = document.createElement("p");
     if(character1 === character2){
-        alert("Choose two different characters");
+        text.innerText = "Please choose two different characters";
+        alert.append(text);
         //Ändra denna till en rolig pop-upp!?
     } else if(character1.value === "0" || character2 === "0"){
-        alert("Please choose characthers!");
+        text.innerText = "Please choose two characters";
+        alert.append(text);
     }else{
         myCharacters.push(character1, character2);
         allCharacters(myCharacters);
@@ -86,11 +90,9 @@ let renderCharacters = (characters) => {
         });
     
     characterArr.forEach((newCharacter)=>{
-        //let picture = document.createElement("img");
         let div = document.createElement("div");
         let heading = document.createElement("h3");
         heading.innerText= `${newCharacter.name}`;
-        //picture.src = `${newCharacter.pictureUrl}`;
         div.innerHTML = `<img src="./assets/photos/${newCharacter.pictureUrl}.png" alt="Picture of ${newCharacter.name}">`
         div.append(heading);
 
@@ -119,7 +121,6 @@ let renderCharacters = (characters) => {
                 <li>Number of films: ${newCharacter.movies}</li>
             </ul>
             `
-
             extraInfoDiv.appendChild(moreInfo);
         })  
         extraInfo.append(extraInfoDiv, compareDiv);
